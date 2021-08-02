@@ -1,0 +1,102 @@
+{% extends "dashboard-page.html" %}
+{% load static %}
+
+{% block content %}
+<div class="workspace">
+  <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <div class="x_panel">
+
+          <div class="x_title">
+            <h2></h2>
+            <div class="nav navbar-right panel_toolbox">
+              <a href="{% url 'tag-create' %}" class="btn btn-sm btn-secondary">Cr&eacute;er un nouveau tag</a>
+              <a href="{% url 'task-create' %}" class="btn btn-sm btn-primary">Cr&eacute;er une nouvelle t&acirc;che</a>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div >
+            <form action="{% url 'tag-filter' %}" method="post">
+              {% csrf_token %}
+              <div class="row">
+              {% for field in formfilter.visible_fields %}
+              <div class="col-3">
+                {{ field }}
+              </div>
+              {% endfor %}
+                <div class="col-2">
+                  <input type="submit" class="btn btn-secondary" value="filtrer" />
+                  <a href="{% url 'tag-filter-clear' %}">clear</a>
+                </div>
+              </div>
+            </form>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-sm-12">
+
+        <div class="x_panel">
+
+          <div class="x_title">
+            <h2>Liste des t&acirc;ches</h2>
+            <div class="nav navbar-right panel_toolbox">
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+
+          <div class="x_content">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="card-box table-responsive">
+                  <table id="dashboard" class="table table-striped table-bordered dt-responsive nowrap no-footer dtr-inline collapsed" cellspacing="0" width="100%" role="grid" aria-describedby="datatable-responsive_info" style="width: 100%;">
+                    <thead>
+                      <tr role="row">
+                        <th class="text-center">status</th>
+                        <th width="50%">t&acirc;che</th>
+                        <th width="25%">tags</th>
+                        <th class="text-center">importance</th>
+                        <th class="text-center">urgence</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for item in items %}
+                      <tr role="row" class="odd">
+                        <td class="text-center">{{ item.get_status_display }}</td>
+                        <td><a href="{% url 'task-update' item.id %}">{{ item.content }}</a></td>
+                        <td>
+                          {% for tag in item.tags.all %}
+                          <a href="{% url 'tag-update' tag.id %}">{{ tag.name }}</a>,&nbsp;
+                          {% endfor %}
+                        </td>
+                        <td class="text-center">{{ item.get_important_priority_display }}</td>
+                        <td class="text-center">{{ item.get_time_priority_display }}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                    <tfoot>
+                      <tr role="row">
+                        <th class="text-center">status</th>
+                        <th width="50%">t&acirc;che</th>
+                        <th width="25%">tags</th>
+                        <th class="text-center">importance</th>
+                        <th class="text-center">urgence</th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block script_document_ready %}
+{% endblock %}

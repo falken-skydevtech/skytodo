@@ -1,0 +1,48 @@
+{% extends "dashboard-page.html" %}
+{% load static %}
+
+
+{% block content %}
+<div class="workspace">
+
+  <div class="">
+
+    <div class="clearfix"></div>
+    <div class="row">
+
+
+      <div class="col-md-12 col-sm-12 col-lg-12 ">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Supprimer la tâche</h2>
+            <ul class="nav navbar-right panel_toolbox">
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <form action="{% url 'task-delete' instance.id %}" method="POST">
+              {% csrf_token %}
+              {% for field in form.visible_fields %}
+              <div class="item form-group">
+                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">{{ field.label_tag }}</label>
+                <div class="col-lg-6 col-sm-6 ">
+                  {{ field }}
+                  <div>
+                    {{ field.errors }}
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+              <div class="text-center">
+                <a href="{% url 'task-update' instance.id %}" class="btn btn-secondary ml-5">Annuler</a>
+                <input class="btn btn-danger" type="submit" value="Supprimer" />
+                <span>Pas de confirmation</span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

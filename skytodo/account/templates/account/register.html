@@ -1,0 +1,61 @@
+{% extends "public-page.html" %}
+{% load static %}
+{% block content %}
+
+
+
+{% if form.errors %}
+<div class="row">
+  <div class="w-50 mx-auto">
+    <div class="alert alert-danger" role="alert">
+      {{ form.errors }}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+
+
+<div class="row">
+  <div style="with:50%;margin:auto">
+    <h1 class="mb-4 display-4 text-center" style="color: black; font-size: 40px; font-family: Avenir;">SKY-TODO<br /> Application Démo support au recrutement</h1>
+  </div>
+</div>
+
+<div class="card w-25 mx-auto">
+  <div class="card-header app-blue">
+    <h4 class="mb-4 text-center">Créez <br /> votre compte</h4>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="x_content">
+        <h6 class="text-center py-2">Entrez votre email ci-dessous pour créer votre compte</h6>
+        <div class="text-center py-2"> Ou connectez-vous en <a href="/accounts/login">cliquant ici</a></div>
+        <form id="register" method="post" action="/account/register" class="form-horizontal form-label-left" novalidate="">
+          {% csrf_token %}
+          {% for field in form.visible_fields %}
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="email">{{ field.label_tag }}
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              {{ field.errors }}
+              {{ field }}
+            </div>
+          </div>
+          {% endfor %}
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="message"> &nbsp;</label>
+          </div>
+          <div class="ln_solid"></div>
+          <div class="item form-group">
+            <div class="col-md-6 col-sm-6 offset-md-3 text-center">
+              <input type="submit" class="btn btn-primary" value="Envoyer" />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,7 @@
+*.pyc
+__pycache__
+server-ext.py
+settings*.py
+settings.py
+migrations
+db.sqlite3

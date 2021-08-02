@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="SKY-TODO: Application de démonstration pour les entretiens">
+  <title>SKY-TODO</title>
+
+  <link href="{% static "vendors/bootstrap/dist/css/bootstrap.min.css" %}" rel="stylesheet">
+  <link href="{% static "vendors/font-awesome/css/all.min.css" %}" rel="stylesheet">
+
+  <link href="{% static "vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" %}" rel="stylesheet">
+  <link href="{% static "vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" %}" rel="stylesheet">
+  <link href="{% static "vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" %}" rel="stylesheet">
+  <link href="{% static "vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" %}" rel="stylesheet">
+  <link href="{% static "vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" %}" rel="stylesheet">
+
+  <link href="{% static "css/custom.min.css" %}" rel="stylesheet">
+  <link href="{% static "styles/main.css" %}" rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="{% static "application/favicon.ico" %}" />
+</head>
+
+<body class="nav-md">
+  <div class="container body">
+    <div class="main_container">
+      <div class="col-md-3 left_col menu_fixed">
+        <div class="left_col scroll-view">
+          <div class="navbar nav_title" style="border: 0;">
+            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>SKY-TODO</span></a>
+          </div>
+          <div class="clearfix"></div>
+
+          <br />
+
+
+
+        </div>
+      </div>
+
+      <div class="top_nav">
+        <div class="nav_menu">
+          <div class="nav toggle">
+            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+          </div>
+          <nav class="nav navbar-nav">
+            <ul class=" navbar-right">
+              <li class="nav-item dropdown open" style="padding-left: 15px;">
+                <a href="/account/login" class="btn btn-sm btn-primary">Me connecter</a>
+              </li>
+              <li class="nav-item dropdown open" style="padding-left: 15px;">
+                <a href="/account/register" class="btn btn-sm btn-success">Créer mon compte</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+
+      <div class="right_col" role="main">
+        <div class="workspace">
+          {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>
+              {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+              {{ message }}
+              </li>
+              {% endfor %}
+          </ul>
+          {% endif %}
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+
+      <footer>
+        <div class="container-lg mt-4">
+          <div class="d-md-flex">
+            <div class="col-md-6">2021 © SKY-TODO</div>
+            <div class="col-md-6">
+              <div class="text-md-right footer-links d-none d-md-block">
+                <a class="text-muted ml-1" href="/account/register">Créer votre compte</a></div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+  <div class="clearfix"></div>
+
+  <script src="{% static "vendors/jquery/dist/jquery.min.js" %}"></script>
+  <script src="{% static "vendors/bootstrap/dist/js/bootstrap.bundle.min.js" %}"></script>
+  <script src="{% static "vendors/datatables.net/js/jquery.dataTables.min.js" %}"></script>
+  <script src="{% static "vendors/datatables.net-bs/js/dataTables.bootstrap.min.js" %}"></script>
+  <script src="{% static "vendors/datatables.net-buttons/js/dataTables.buttons.min.js" %}"></script>
+  <script src="{% static "vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js" %}"></script>
+  <script src="{% static "vendors/datatables.net-buttons/js/buttons.flash.min.js" %}"></script>
+  <script src="{% static "vendors/datatables.net-buttons/js/buttons.html5.min.js" %}"></script>
+  <script src="{% static "vendors/datatables.net-buttons/js/buttons.print.min.js" %}"></script>
+  <script src="{% static "vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js" %}"></script>
+  <script src="{% static "vendors/datatables.net-keytable/js/dataTables.keyTable.min.js" %}"></script>
+  <script src="{% static "vendors/datatables.net-responsive/js/dataTables.responsive.min.js" %}"></script>
+  <script src="{% static "vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js" %}"></script>
+  <script src="{% static "vendors/datatables.net-scroller/js/dataTables.scroller.min.js" %}"></script>
+  <script src="{% static "js/custom.min.js" %}"></script>
+  <script src="{% static "styles/main.js" %}"></script>
+  <script>
+    $(document).ready(function() {
+      {
+        % block script_document_ready %
+      } {
+        % endblock %
+      }
+    });
+  </script>
+</body>
+
+</html>

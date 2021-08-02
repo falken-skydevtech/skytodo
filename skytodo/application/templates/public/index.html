@@ -1,0 +1,93 @@
+{% extends "public-page.html" %}
+{% load static %}
+{% block content %}
+<div class="workspace">
+  <div class="">
+    <div class="page-title">
+      <div class="title_wide">
+        <h3>SKY-TODO: Application de démonstration pour les entretiens du développeur Django <strong>SIVA</strong></h3>
+      </div>
+      <div class="title_right">
+      </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+
+      <div class="col-md-12 col-sm-12  ">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Recrutement</h2>
+            <ul class="nav navbar-right panel_toolbox">
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <div class="text-lg">
+              Bonjour,<br /><br />
+              SKY-TODO est une application de démonstration de mes compétences en développement BackEnd Django pour les entretiens avec les recruteurs.<br /><br />
+              Pour tester cette application il vous faut créer un compte en cliquant sur le bouton en haut à droite: <a href="/" class="btn btn-sm btn-success">Créer mon compte</a>.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-6  ">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Contact</h2>
+            <ul class="nav navbar-right panel_toolbox">
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+                    <div class="text-center mb-2">
+                      Pour me contacter:
+                    </div>
+                    <form action="/" method="POST">
+                      {% csrf_token %}
+                      {% for field in form.visible_fields %}
+                      <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">{{ field.label_tag }}</label>
+                        <div class="col-lg-6 col-sm-6 ">
+                          {{ field }}
+                          <div>
+                            {{ field.errors }}
+                          </div>
+                        </div>
+                      </div>
+                      {% endfor %}
+                      <div class="text-center">
+                        <input class="btn btn-primary" type="submit" value="Envoyer" />
+                      </div>
+                    </form>
+                  </div>
+
+
+              </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6  ">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>profils</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  Les différents liens vers mes comptes et profils:
+                  <ul>
+                    <li>Github</li>
+                    <li>Malt</li>
+                  </ul>
+
+                </div>
+            </div>
+          </div>
+
+
+
+    </div>
+  </div>
+</div>
+{% endblock %}
